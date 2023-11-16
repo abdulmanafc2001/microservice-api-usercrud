@@ -1,0 +1,66 @@
+syntax = "proto3";
+
+option go_package = "./proto";
+
+package user_service;
+
+service UserService{
+    rpc CreateUser(CreateRequest) returns (CreateResponse);
+    rpc UpdateUser(UpdateRequest) returns (UpdateResponse);
+    rpc DeleteUser(DeleteRequest) returns (DeleteResponse);
+    rpc ReadUser(NoParam) returns (UserList);
+}
+
+message SuccessMessage {
+    string SuccessMessage = 1;
+}
+
+message NoParam{}
+
+message User {
+    int32 Id =1;
+    string UserName =2;
+    string Password = 3;
+    string FullName = 4;
+    string Phone = 5;
+    string Gender = 6;
+}
+
+message UserList{
+    repeated User userlist = 1;
+}
+
+message CreateRequest {
+    string UserName = 1;
+    string Password = 2;
+    string FullName = 3;
+    string Phone = 4;
+    string Gender = 5;
+}
+
+message CreateResponse {
+    SuccessMessage success = 1;
+}
+
+message UpdateRequest {
+    int32 UserId = 1;
+    string UserName = 2;
+    string Password = 3;
+    string FullName = 4;
+    string Phone = 5;
+    string Gender = 6;
+}
+
+message UpdateResponse {
+    SuccessMessage message = 1;
+}
+
+message DeleteRequest {
+    int32 UserId = 1;
+}
+
+message DeleteResponse {
+    SuccessMessage message =1;
+}
+
+
